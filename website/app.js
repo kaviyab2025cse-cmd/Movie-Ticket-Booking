@@ -3,7 +3,7 @@
  * Interactive Frontend Controller (Vanilla JavaScript)
  * Demonstrates OOP models, dynamic 5x8 seat mapping, coupon calculation, and CRUD operations.
  * Featuring 5 Tamil Blockbuster Movies:
- *  1. Baattha (Tamil)
+ *  1. Baththa (Tamil)
  *  2. Dorothy (Tamil)
  *  3. Meesaya Murukku 2 (Tamil)
  *  4. Jailer 2 (Tamil)
@@ -17,7 +17,7 @@
 const MOVIES = [
     {
         id: 1,
-        title: "Baattha",
+        title: "Baththa",
         language: "Tamil",
         genre: "Comedy / Crime / Drama",
         duration: "142 mins",
@@ -26,8 +26,8 @@ const MOVIES = [
         director: "Balaji Tharaneetharan",
         cast: "Vijay Sethupathi, Master Sai Prithviraj, Lijomol Jose",
         music: "Sai Abhyankkar",
-        synopsis: "Set in 1986 Madras, a feared local gangster named Baattha gets accidentally locked inside an abandoned school restroom by an 8-year-old schoolboy. Isolated and stripped of his power, a heartwarming bond forms that alters his life.",
-        poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+        synopsis: "Set in 1986 Madras, a feared local gangster named Baththa gets accidentally locked inside an abandoned school restroom by an 8-year-old schoolboy. Isolated and stripped of his power, a heartwarming bond forms that alters his life.",
+        poster: "images/baththa.jpeg",
         shows: [
             { id: 101, timeText: "10:30 AM", bookedSeats: ["A2", "B4", "C3"] },
             { id: 102, timeText: "6:45 PM",  bookedSeats: ["C1", "C2", "E3", "E4"] }
@@ -45,7 +45,7 @@ const MOVIES = [
         cast: "Keerthy Suresh, Sananth, Rishikanth",
         music: "Ilaiyaraaja",
         synopsis: "Set against rural Tamil Nadu in the early 1990s, two childhood friends find their lives transformed by the gentle empathy of Dorothy. When a tragic event occurs, loyalty, friendship, and societal norms are put to the ultimate test.",
-        poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
+        poster: "images/dorothy.jpeg",
         shows: [
             { id: 201, timeText: "1:45 PM", bookedSeats: ["B2", "D5"] },
             { id: 202, timeText: "7:15 PM", bookedSeats: ["A1", "C4", "E5"] }
@@ -63,7 +63,7 @@ const MOVIES = [
         cast: "Hiphop Tamizha Adhi, Ketika Sharma, Chaithra J Achar",
         music: "Hiphop Tamizha",
         synopsis: "The energetic musical successor celebrating passionate independent musicians, college youth culture, and Chennai's vibrant Gaana music legacy across generations.",
-        poster: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+        poster: "images/meesaya_murukku_2.jpeg",
         shows: [
             { id: 301, timeText: "11:15 AM", bookedSeats: ["A1", "A3", "B6"] },
             { id: 302, timeText: "4:30 PM",  bookedSeats: ["C2", "D3", "E2"] }
@@ -81,7 +81,7 @@ const MOVIES = [
         cast: "Superstar Rajinikanth, S. J. Suryah, Vidya Balan, Mithun Chakraborty",
         music: "Anirudh Ravichander",
         synopsis: "'Tiger' Muthuvel Pandian returns for an explosive clash against a ruthless international crime syndicate, bringing back his lethal calm, razor-sharp tactical brilliance, and dark humor.",
-        poster: "https://images.unsplash.com/photo-1509281373149-e957c6296406?auto=format&fit=crop&w=800&q=80",
+        poster: "images/jailer_2.jpeg",
         shows: [
             { id: 401, timeText: "10:00 AM", bookedSeats: ["E1", "E2", "C3", "C4"] },
             { id: 402, timeText: "2:30 PM",  bookedSeats: ["D1", "D2"] },
@@ -101,7 +101,7 @@ const MOVIES = [
         cast: "Soori, Suhas, Mahima Nambiar",
         music: "GV Prakash Kumar",
         synopsis: "Set along the rugged coastal shores of Tamil Nadu, local fishermen rally to defend their livelihoods and maritime heritage through intense, high-stakes traditional ocean boat racing (Mandaadi).",
-        poster: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        poster: "images/mandaadi.jpeg",
         shows: [
             { id: 501, timeText: "1:00 PM", bookedSeats: ["A5", "B1"] },
             { id: 502, timeText: "8:30 PM", bookedSeats: ["C7", "D8", "E1"] }
@@ -141,12 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initDefaultBookings() {
     const existing = localStorage.getItem("cinebook_web_bookings");
-    if (!existing || existing.includes("Interstellar")) {
+    if (!existing || existing.includes("Interstellar") || existing.includes("Baattha")) {
         const initialBookings = [
             {
                 bookingId: "BK1001",
-                movieTitle: "Jailer 2 (Tamil)",
-                showTime: "7:00 PM",
+                movieTitle: "Baththa (Tamil)",
+                showTime: "6:45 PM",
                 seatCodes: "C3, C4",
                 baseAmount: 500,
                 discount: 50,
@@ -247,7 +247,6 @@ function buildSeatGrid() {
     const gridContainer = document.getElementById("seatGridContainer");
     gridContainer.innerHTML = "";
 
-    // Collect currently booked seats from static data + localStorage for this show
     const allBookings = getStoredBookings();
     const dynamicBooked = [];
     allBookings.forEach(b => {

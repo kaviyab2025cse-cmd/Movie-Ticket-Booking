@@ -115,7 +115,7 @@ CREATE TABLE booking_seats (
 
 -- Insert 5 Tamil Movies
 INSERT INTO movies (movie_id, title, duration_mins, genre, language) VALUES
-(1, 'Baattha (Tamil)', 142, 'Comedy / Crime / Drama', 'Tamil'),
+(1, 'Baththa (Tamil)', 142, 'Comedy / Crime / Drama', 'Tamil'),
 (2, 'Dorothy (Tamil)', 154, 'Crime / Drama', 'Tamil'),
 (3, 'Meesaya Murukku 2 (Tamil)', 148, 'Musical / Comedy / Drama', 'Tamil'),
 (4, 'Jailer 2 (Tamil)', 168, 'Action / Crime / Thriller', 'Tamil'),

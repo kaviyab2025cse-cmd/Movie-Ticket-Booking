@@ -66,8 +66,8 @@ public class Theatre {
      */
     public static Theatre withSampleShows() {
         Theatre theatre = new Theatre("CineBook Cinema, Chennai");
-        theatre.addShow(new Show(1, "Baattha (Tamil)", LocalTime.of(10, 30)));
-        theatre.addShow(new Show(2, "Baattha (Tamil)", LocalTime.of(18, 45)));
+        theatre.addShow(new Show(1, "Baththa (Tamil)", LocalTime.of(10, 30)));
+        theatre.addShow(new Show(2, "Baththa (Tamil)", LocalTime.of(18, 45)));
         theatre.addShow(new Show(3, "Dorothy (Tamil)", LocalTime.of(13, 45)));
         theatre.addShow(new Show(4, "Dorothy (Tamil)", LocalTime.of(19, 15)));
         theatre.addShow(new Show(5, "Meesaya Murukku 2 (Tamil)", LocalTime.of(11, 15)));
