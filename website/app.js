@@ -140,7 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initDefaultBookings() {
-    if (!localStorage.getItem("cinebook_web_bookings")) {
+    const existing = localStorage.getItem("cinebook_web_bookings");
+    if (!existing || existing.includes("Interstellar")) {
         const initialBookings = [
             {
                 bookingId: "BK1001",
