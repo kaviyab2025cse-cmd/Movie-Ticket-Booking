@@ -344,6 +344,18 @@ button {
     font-weight: 600;
 }
 
+.lang-badge {
+    background: rgba(229, 9, 20, 0.25);
+    color: #ff6b6b;
+    border: 1px solid rgba(229, 9, 20, 0.4);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
 .movie-info {
     position: relative;
     z-index: 2;

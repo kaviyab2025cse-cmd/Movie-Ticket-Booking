@@ -51,8 +51,8 @@ public class DatabaseCRUDTest {
         try {
             Theatre theatre = Theatre.withSampleShows();
             List<Show> shows = theatre.getShows();
-            if (shows.size() == 4 && shows.get(0).countAvailableSeats() == 40) {
-                System.out.println("PASSED (All 4 shows and 40 seats loaded)");
+            if (shows.size() >= 5 && shows.get(0).countAvailableSeats() == 40) {
+                System.out.println("PASSED (All " + shows.size() + " shows and 40 seats loaded)");
                 passed++;
             } else {
                 System.out.println("FAILED");

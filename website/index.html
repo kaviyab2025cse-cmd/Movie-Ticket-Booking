@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineBook - Movie Ticket Booking System</title>
+    <title>CineBook - Tamil Movie Ticket Booking System</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎟️</text></svg>">
 </head>
@@ -17,7 +17,7 @@
                 <span>CineBook</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#movies" class="active">Now Showing</a></li>
+                <li><a href="#movies" class="active">Now Showing (Tamil)</a></li>
                 <li><a href="#bookings">My Bookings</a></li>
                 <li><button class="btn-secondary" onclick="toggleArchModal()" style="padding: 6px 14px; font-size: 0.85rem;">Project Architecture</button></li>
                 <li><span class="badge-tag">OOPs & DBMS Project</span></li>
@@ -30,15 +30,15 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-pill">
-                    <span>✨ College Demo Mode</span> • Live Cinema Counter
+                    <span>✨ Kollywood Box Office</span> • Live Ticket Counter
                 </div>
-                <h1 class="hero-title">Experience Cinema Like Never Before</h1>
+                <h1 class="hero-title">Experience the Magic of Tamil Cinema</h1>
                 <p class="hero-desc">
-                    Book your favorite seats across 3 tiers (Regular, Premium, VIP) in our modern multiplex. Powered by Core Java OOP principles and MySQL Relational DBMS.
+                    Book tickets for the biggest Tamil blockbusters: <strong>Baattha</strong>, <strong>Dorothy</strong>, <strong>Meesaya Murukku 2</strong>, <strong>Jailer 2</strong>, and <strong>Mandaadi</strong> across 3 seating classes (Regular, Premium, VIP).
                 </p>
                 <div class="hero-actions">
                     <a href="#movies" class="btn-primary">
-                        <span>🎟️ Book Tickets Now</span>
+                        <span>🎟️ Browse Tamil Movies</span>
                     </a>
                     <button class="btn-secondary" onclick="toggleArchModal()">
                         <span>📘 View Java & DBMS Design</span>
@@ -46,12 +46,12 @@
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <h4>4 Daily Shows</h4>
-                        <p>Independent seat grids</p>
+                        <h4>5 Tamil Movies</h4>
+                        <p>Latest blockbusters</p>
                     </div>
                     <div class="stat-item">
-                        <h4>40 Seats / Show</h4>
-                        <p>5 Rows × 8 Columns</p>
+                        <h4>12 Daily Shows</h4>
+                        <p>5×8 live seat grid</p>
                     </div>
                     <div class="stat-item">
                         <h4>80% Refund</h4>
@@ -66,14 +66,14 @@
     <main class="container" id="movies">
         <div class="section-header">
             <div>
-                <h2 class="section-title">🍿 Now Showing in Theatres</h2>
+                <h2 class="section-title">🍿 Now Showing: Tamil Blockbusters</h2>
                 <p class="section-subtitle">Select a movie and preferred showtime to choose your seats</p>
             </div>
             <span class="badge-tag" style="background: rgba(16,185,129,0.1); color: var(--accent-emerald); border-color: rgba(16,185,129,0.3);">● Box Office Open</span>
         </div>
 
         <div class="movies-grid" id="moviesGrid">
-            <!-- Dynamically populated by app.js -->
+            <!-- Dynamically populated by app.js with the 5 Tamil movies -->
         </div>
 
         <!-- My Bookings Table Section (CRUD READ & UPDATE) -->
@@ -182,7 +182,7 @@
             <div class="ticket-wrapper">
                 <div class="ticket-header">
                     <div>
-                        <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">CineBook Cinema</div>
+                        <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">CineBook Cinema, Chennai</div>
                         <h3 id="ticketMovie" style="font-size: 1.3rem; margin-top: 2px;">Movie Title</h3>
                     </div>
                     <div class="brand-icon">🎬</div>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="ticket-row">
                         <span class="ticket-label">Show Time</span>
-                        <span class="ticket-value" id="ticketTime">7:30 PM</span>
+                        <span class="ticket-value" id="ticketTime">7:00 PM</span>
                     </div>
                     <div class="ticket-row">
                         <span class="ticket-label">Reserved Seats</span>
@@ -267,7 +267,7 @@
     <footer>
         <div class="container">
             <p style="margin-bottom: 8px;"><strong>CineBook - Movie Ticket Booking System</strong></p>
-            <p>Course: Object-Oriented Programming (Java) & Database Management Systems (MySQL)</p>
+            <p>Featuring 5 Tamil Blockbuster Movies: Baattha, Dorothy, Meesaya Murukku 2, Jailer 2, Mandaadi</p>
             <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">
                 College Project Review & Demonstration • Academic Year 2026-2027
             </p>

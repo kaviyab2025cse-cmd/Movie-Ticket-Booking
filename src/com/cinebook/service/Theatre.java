@@ -19,8 +19,12 @@ import java.util.regex.Pattern;
 
 /**
  * The cinema service layer. A Theatre is composed of Shows and manages bookings.
- * It integrates with the MySQL Database Access Object (DAO) for persistence while
- * providing seamless memory fallback when offline.
+ * Features 5 Tamil Blockbuster Movies:
+ *  1. Baattha (Tamil)
+ *  2. Dorothy (Tamil)
+ *  3. Meesaya Murukku 2 (Tamil)
+ *  4. Jailer 2 (Tamil)
+ *  5. Mandaadi (Tamil)
  */
 public class Theatre {
 
@@ -57,17 +61,19 @@ public class Theatre {
     }
 
     /**
-     * Creates the theatre used by the application, with four shows.
-     * Two shows are of the same movie at different times, to show that each has its own seats.
+     * Creates the theatre with sample shows for the 5 Tamil movies.
+     * Shows 1 and 2 feature Baattha at different times to demonstrate independent seat grids.
      */
     public static Theatre withSampleShows() {
         Theatre theatre = new Theatre("CineBook Cinema, Chennai");
-        theatre.addShow(new Show(1, "Interstellar", LocalTime.of(10, 0)));
-        theatre.addShow(new Show(2, "Interstellar", LocalTime.of(19, 30)));
-        theatre.addShow(new Show(3, "Dune: Part Two", LocalTime.of(16, 15)));
-        theatre.addShow(new Show(4, "The Dark Knight", LocalTime.of(21, 45)));
+        theatre.addShow(new Show(1, "Baattha (Tamil)", LocalTime.of(10, 30)));
+        theatre.addShow(new Show(2, "Baattha (Tamil)", LocalTime.of(18, 45)));
+        theatre.addShow(new Show(3, "Dorothy (Tamil)", LocalTime.of(13, 45)));
+        theatre.addShow(new Show(4, "Dorothy (Tamil)", LocalTime.of(19, 15)));
+        theatre.addShow(new Show(5, "Meesaya Murukku 2 (Tamil)", LocalTime.of(11, 15)));
+        theatre.addShow(new Show(6, "Jailer 2 (Tamil)", LocalTime.of(19, 0)));
+        theatre.addShow(new Show(7, "Mandaadi (Tamil)", LocalTime.of(20, 30)));
 
-        // If DB is connected, sync seat grids
         if (theatre.isDbConnected()) {
             theatre.refreshSeatGridsFromDB();
         }
@@ -115,7 +121,7 @@ public class Theatre {
     public List<Show> getShowsForMovie(String movieName) {
         List<Show> matches = new ArrayList<>();
         for (Show show : shows) {
-            if (show.getMovieName().equals(movieName)) {
+            if (show.getMovieName().equalsIgnoreCase(movieName)) {
                 matches.add(show);
             }
         }
@@ -135,7 +141,6 @@ public class Theatre {
         booking.bookSeats();
         bookings.add(booking);
 
-        // Persist to MySQL database (CREATE operation)
         if (dbConnected) {
             try {
                 CineBookDAO.saveBooking(booking, show.getShowId());
@@ -148,7 +153,7 @@ public class Theatre {
     }
 
     /**
-     * Finds a booking by its ID. The lookup ignores case and surrounding spaces.
+     * Finds a booking by its ID.
      */
     public Booking findBooking(String rawId) throws BookingException {
         if (rawId == null || rawId.trim().isEmpty()) {
@@ -168,13 +173,11 @@ public class Theatre {
 
     /**
      * Cancels a booking by ID, frees its seats and returns the 80% refund.
-     * Updates MySQL database if connected (UPDATE operation).
      */
     public double cancelBooking(String bookingId) throws BookingException {
         Booking booking = findBooking(bookingId);
         double refund = booking.cancelBooking();
 
-        // Update in MySQL database
         if (dbConnected) {
             try {
                 CineBookDAO.updateCancelBooking(booking.getBookingId(), refund,

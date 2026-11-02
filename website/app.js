@@ -2,54 +2,109 @@
  * CineBook - Movie Ticket Booking System
  * Interactive Frontend Controller (Vanilla JavaScript)
  * Demonstrates OOP models, dynamic 5x8 seat mapping, coupon calculation, and CRUD operations.
+ * Featuring 5 Tamil Blockbuster Movies:
+ *  1. Baattha (Tamil)
+ *  2. Dorothy (Tamil)
+ *  3. Meesaya Murukku 2 (Tamil)
+ *  4. Jailer 2 (Tamil)
+ *  5. Mandaadi (Tamil)
  */
 
 // =============================================================================
-// 1. Data Store (Matches Java Backend Domain Model)
+// 1. Data Store - 5 Tamil Movies (Matches Java Backend Domain Model)
 // =============================================================================
 
 const MOVIES = [
     {
         id: 1,
-        title: "Interstellar",
-        genre: "Sci-Fi / Adventure",
-        duration: "169 mins",
-        rating: "8.7",
-        director: "Christopher Nolan",
-        cast: "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
-        synopsis: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival as Earth faces ecological collapse.",
-        poster: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        title: "Baattha",
+        language: "Tamil",
+        genre: "Comedy / Crime / Drama",
+        duration: "142 mins",
+        releaseDate: "October 1, 2026",
+        rating: "8.8",
+        director: "Balaji Tharaneetharan",
+        cast: "Vijay Sethupathi, Master Sai Prithviraj, Lijomol Jose",
+        music: "Sai Abhyankkar",
+        synopsis: "Set in 1986 Madras, a feared local gangster named Baattha gets accidentally locked inside an abandoned school restroom by an 8-year-old schoolboy. Isolated and stripped of his power, a heartwarming bond forms that alters his life.",
+        poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
         shows: [
-            { id: 101, timeText: "10:00 AM", bookedSeats: ["A1", "A2", "B5"] },
-            { id: 102, timeText: "7:30 PM", bookedSeats: ["C1", "C2", "E3", "E4"] }
+            { id: 101, timeText: "10:30 AM", bookedSeats: ["A2", "B4", "C3"] },
+            { id: 102, timeText: "6:45 PM",  bookedSeats: ["C1", "C2", "E3", "E4"] }
         ]
     },
     {
         id: 2,
-        title: "Dune: Part Two",
-        genre: "Sci-Fi / Action",
-        duration: "166 mins",
-        rating: "8.6",
-        director: "Denis Villeneuve",
-        cast: "Timothée Chalamet, Zendaya, Rebecca Ferguson",
-        synopsis: "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.",
+        title: "Dorothy",
+        language: "Tamil",
+        genre: "Crime / Drama",
+        duration: "154 mins",
+        releaseDate: "September 25, 2026",
+        rating: "8.7",
+        director: "Karthik Subbaraj",
+        cast: "Keerthy Suresh, Sananth, Rishikanth",
+        music: "Ilaiyaraaja",
+        synopsis: "Set against rural Tamil Nadu in the early 1990s, two childhood friends find their lives transformed by the gentle empathy of Dorothy. When a tragic event occurs, loyalty, friendship, and societal norms are put to the ultimate test.",
         poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
         shows: [
-            { id: 201, timeText: "4:15 PM", bookedSeats: ["B1", "B2", "D4"] }
+            { id: 201, timeText: "1:45 PM", bookedSeats: ["B2", "D5"] },
+            { id: 202, timeText: "7:15 PM", bookedSeats: ["A1", "C4", "E5"] }
         ]
     },
     {
         id: 3,
-        title: "The Dark Knight",
-        genre: "Action / Crime",
-        duration: "152 mins",
-        rating: "9.0",
-        director: "Christopher Nolan",
-        cast: "Christian Bale, Heath Ledger, Aaron Eckhart",
-        synopsis: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+        title: "Meesaya Murukku 2",
+        language: "Tamil",
+        genre: "Musical / Comedy / Youth Drama",
+        duration: "148 mins",
+        releaseDate: "2026",
+        rating: "8.4",
+        director: "Hiphop Tamizha Adhi",
+        cast: "Hiphop Tamizha Adhi, Ketika Sharma, Chaithra J Achar",
+        music: "Hiphop Tamizha",
+        synopsis: "The energetic musical successor celebrating passionate independent musicians, college youth culture, and Chennai's vibrant Gaana music legacy across generations.",
+        poster: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+        shows: [
+            { id: 301, timeText: "11:15 AM", bookedSeats: ["A1", "A3", "B6"] },
+            { id: 302, timeText: "4:30 PM",  bookedSeats: ["C2", "D3", "E2"] }
+        ]
+    },
+    {
+        id: 4,
+        title: "Jailer 2",
+        language: "Tamil",
+        genre: "Action / Crime / Thriller",
+        duration: "168 mins",
+        releaseDate: "2026",
+        rating: "9.2",
+        director: "Nelson Dilipkumar",
+        cast: "Superstar Rajinikanth, S. J. Suryah, Vidya Balan, Mithun Chakraborty",
+        music: "Anirudh Ravichander",
+        synopsis: "'Tiger' Muthuvel Pandian returns for an explosive clash against a ruthless international crime syndicate, bringing back his lethal calm, razor-sharp tactical brilliance, and dark humor.",
         poster: "https://images.unsplash.com/photo-1509281373149-e957c6296406?auto=format&fit=crop&w=800&q=80",
         shows: [
-            { id: 301, timeText: "9:45 PM", bookedSeats: ["E1", "E2", "C7", "C8"] }
+            { id: 401, timeText: "10:00 AM", bookedSeats: ["E1", "E2", "C3", "C4"] },
+            { id: 402, timeText: "2:30 PM",  bookedSeats: ["D1", "D2"] },
+            { id: 403, timeText: "7:00 PM",  bookedSeats: ["A4", "B3", "E5"] },
+            { id: 404, timeText: "10:15 PM", bookedSeats: ["C5", "C6", "D7"] }
+        ]
+    },
+    {
+        id: 5,
+        title: "Mandaadi",
+        language: "Tamil",
+        genre: "Sports / Action / Drama",
+        duration: "138 mins",
+        releaseDate: "2026",
+        rating: "8.5",
+        director: "Mathimaran Pugazhendhi",
+        cast: "Soori, Suhas, Mahima Nambiar",
+        music: "GV Prakash Kumar",
+        synopsis: "Set along the rugged coastal shores of Tamil Nadu, local fishermen rally to defend their livelihoods and maritime heritage through intense, high-stakes traditional ocean boat racing (Mandaadi).",
+        poster: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        shows: [
+            { id: 501, timeText: "1:00 PM", bookedSeats: ["A5", "B1"] },
+            { id: 502, timeText: "8:30 PM", bookedSeats: ["C7", "D8", "E1"] }
         ]
     }
 ];
@@ -89,14 +144,14 @@ function initDefaultBookings() {
         const initialBookings = [
             {
                 bookingId: "BK1001",
-                movieTitle: "Interstellar",
-                showTime: "7:30 PM",
+                movieTitle: "Jailer 2 (Tamil)",
+                showTime: "7:00 PM",
                 seatCodes: "C3, C4",
                 baseAmount: 500,
                 discount: 50,
                 amountPaid: 450,
                 status: "CONFIRMED",
-                bookingTime: "2026-10-30 14:15",
+                bookingTime: "2026-11-02 14:15",
                 refundAmount: 0
             }
         ];
@@ -117,7 +172,7 @@ function saveBookings(bookings) {
     renderBookingsTable();
 }
 
-// Render now-showing movies
+// Render the 5 Tamil movies grid
 function renderMovieCards() {
     const container = document.getElementById("moviesGrid");
     if (!container) return;
@@ -127,7 +182,10 @@ function renderMovieCards() {
             <div class="movie-poster-box" style="background-image: url('${movie.poster}')">
                 <div class="badge-row">
                     <span class="rating-badge">★ ${movie.rating}</span>
-                    <span class="genre-badge">${movie.genre}</span>
+                    <div style="display: flex; gap: 6px;">
+                        <span class="lang-badge">${movie.language}</span>
+                        <span class="genre-badge">${movie.genre}</span>
+                    </div>
                 </div>
                 <div class="movie-info">
                     <h3 class="movie-title">${movie.title}</h3>
@@ -135,7 +193,12 @@ function renderMovieCards() {
                 </div>
             </div>
             <div class="movie-body">
-                <p class="movie-synopsis">${movie.synopsis}</p>
+                <div>
+                    <p class="movie-synopsis">${movie.synopsis}</p>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">
+                        <strong>Starring:</strong> ${movie.cast}
+                    </div>
+                </div>
                 <div>
                     <div class="showtimes-label">Select Show Time:</div>
                     <div class="showtime-chips">
@@ -145,6 +208,9 @@ function renderMovieCards() {
                             </button>
                         `).join('')}
                     </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 10px; justify-content: center;" onclick="openSeatModal(${movie.id}, ${movie.shows[0].id})">
+                        🎟️ Book Tickets (${movie.shows[0].timeText})
+                    </button>
                 </div>
             </div>
         </div>
@@ -161,8 +227,8 @@ window.openSeatModal = function(movieId, showId) {
     selectedSeats = [];
     appliedCoupon = null;
 
-    document.getElementById("modalMovieTitle").textContent = `${currentMovie.title} (${currentShow.timeText})`;
-    document.getElementById("modalMovieMeta").textContent = `${currentMovie.genre} • Duration: ${currentMovie.duration}`;
+    document.getElementById("modalMovieTitle").textContent = `${currentMovie.title} (${currentMovie.language}) - ${currentShow.timeText}`;
+    document.getElementById("modalMovieMeta").textContent = `${currentMovie.genre} • Duration: ${currentMovie.duration} • Director: ${currentMovie.director}`;
     document.getElementById("couponInput").value = "";
     document.getElementById("couponFeedback").textContent = "";
 
@@ -184,7 +250,8 @@ function buildSeatGrid() {
     const allBookings = getStoredBookings();
     const dynamicBooked = [];
     allBookings.forEach(b => {
-        if (b.status === "CONFIRMED" && b.movieTitle === currentMovie.title && b.showTime === currentShow.timeText) {
+        const fullTitle = `${currentMovie.title} (${currentMovie.language})`;
+        if (b.status === "CONFIRMED" && (b.movieTitle === currentMovie.title || b.movieTitle === fullTitle) && b.showTime === currentShow.timeText) {
             b.seatCodes.split(",").forEach(code => dynamicBooked.push(code.trim()));
         }
     });
@@ -212,7 +279,7 @@ function buildSeatGrid() {
 
             if (isBooked(code)) {
                 seat.classList.add("booked");
-                seat.title = `Seat ${code} is already booked`;
+                seat.title = `Seat ${code} is already booked in this show`;
             } else {
                 seat.title = `Seat ${code} (${SEAT_TYPES[rowLetter].type} - ₹${SEAT_TYPES[rowLetter].price})`;
                 seat.addEventListener("click", () => toggleSeat(code, seat));
@@ -314,7 +381,7 @@ window.processBooking = function() {
 
     const newBooking = {
         bookingId: newId,
-        movieTitle: currentMovie.title,
+        movieTitle: `${currentMovie.title} (${currentMovie.language})`,
         showTime: currentShow.timeText,
         seatCodes: selectedSeats.join(", "),
         baseAmount: baseAmount,
@@ -358,7 +425,7 @@ function renderBookingsTable() {
 
     const bookings = getStoredBookings();
     if (bookings.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">No bookings made yet. Select a movie above to book!</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">No bookings made yet. Select a Tamil movie above to book!</td></tr>`;
         return;
     }
 
@@ -393,7 +460,7 @@ window.cancelBookingAction = function(bookingId) {
     if (!booking) return;
 
     const refund = Math.round(booking.amountPaid * REFUND_RATE);
-    const confirmed = confirm(`Are you sure you want to cancel booking ${bookingId}?\nSeats released: ${booking.seatCodes}\nRefund: ₹${refund.toFixed(2)} (80% of ₹${booking.amountPaid})`);
+    const confirmed = confirm(`Are you sure you want to cancel booking ${bookingId}?\nMovie: ${booking.movieTitle}\nSeats released: ${booking.seatCodes}\nRefund: ₹${refund.toFixed(2)} (80% of ₹${booking.amountPaid})`);
     
     if (confirmed) {
         booking.status = "CANCELLED";
@@ -410,7 +477,6 @@ window.toggleArchModal = function() {
 };
 
 function setupEventListeners() {
-    // Escape key closes modals
     window.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
             closeSeatModal();

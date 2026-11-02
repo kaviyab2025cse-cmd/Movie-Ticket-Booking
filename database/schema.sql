@@ -2,6 +2,7 @@
 -- CineBook - Movie Ticket Booking System
 -- Database Schema for MySQL 8.0+
 -- Course: OOPs and DBMS Project
+-- Features: 5 Tamil Movies Showcase
 -- =====================================================================
 
 -- 1. Create and select Database
@@ -28,6 +29,7 @@ CREATE TABLE movies (
     title VARCHAR(150) NOT NULL UNIQUE,
     duration_mins INT NOT NULL,
     genre VARCHAR(50) NOT NULL,
+    language VARCHAR(30) NOT NULL DEFAULT 'Tamil',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
@@ -108,30 +110,32 @@ CREATE TABLE booking_seats (
 ) ENGINE=InnoDB;
 
 -- =====================================================================
--- Initial Seed Data Population
+-- Initial Seed Data Population - 5 Tamil Movies
 -- =====================================================================
 
--- Insert Movies
-INSERT INTO movies (movie_id, title, duration_mins, genre) VALUES
-(1, 'Interstellar', 169, 'Sci-Fi / Adventure'),
-(2, 'Dune: Part Two', 166, 'Sci-Fi / Action'),
-(3, 'The Dark Knight', 152, 'Action / Crime');
+-- Insert 5 Tamil Movies
+INSERT INTO movies (movie_id, title, duration_mins, genre, language) VALUES
+(1, 'Baattha (Tamil)', 142, 'Comedy / Crime / Drama', 'Tamil'),
+(2, 'Dorothy (Tamil)', 154, 'Crime / Drama', 'Tamil'),
+(3, 'Meesaya Murukku 2 (Tamil)', 148, 'Musical / Comedy / Drama', 'Tamil'),
+(4, 'Jailer 2 (Tamil)', 168, 'Action / Crime / Thriller', 'Tamil'),
+(5, 'Mandaadi (Tamil)', 138, 'Sports / Action / Drama', 'Tamil');
 
--- Insert Shows (4 shows across 3 movies)
+-- Insert Shows for the 5 Tamil Movies
 INSERT INTO shows (show_id, movie_id, show_time, theatre_name) VALUES
-(1, 1, '10:00:00', 'CineBook Cinema, Chennai'),
-(2, 1, '19:30:00', 'CineBook Cinema, Chennai'),
-(3, 2, '16:15:00', 'CineBook Cinema, Chennai'),
-(4, 3, '21:45:00', 'CineBook Cinema, Chennai');
+(1, 1, '10:30:00', 'CineBook Cinema, Chennai'),
+(2, 1, '18:45:00', 'CineBook Cinema, Chennai'),
+(3, 2, '13:45:00', 'CineBook Cinema, Chennai'),
+(4, 2, '19:15:00', 'CineBook Cinema, Chennai'),
+(5, 3, '11:15:00', 'CineBook Cinema, Chennai'),
+(6, 4, '19:00:00', 'CineBook Cinema, Chennai'),
+(7, 5, '20:30:00', 'CineBook Cinema, Chennai');
 
 -- Insert Coupons
 INSERT INTO coupons (coupon_code, discount_percent, description) VALUES
 ('CINE10', 10, '10% off entire booking (max discount)');
 
--- Populate 40 seats (5 rows x 8 columns) for each of the 4 shows
--- Rows A & B: Regular (Rs 150)
--- Rows C & D: Premium (Rs 250)
--- Row E: VIP (Rs 400)
+-- Populate 40 seats (5 rows x 8 columns) for each of the 7 shows
 DELIMITER //
 CREATE PROCEDURE PopulateAllShowSeats()
 BEGIN
@@ -143,7 +147,7 @@ BEGIN
     DECLARE s_price DECIMAL(8,2);
     DECLARE s_code VARCHAR(5);
 
-    WHILE s_id <= 4 DO
+    WHILE s_id <= 7 DO
         SET r = 0;
         WHILE r < 5 DO
             SET r_letter = SUBSTRING('ABCDE', r + 1, 1);
@@ -176,6 +180,6 @@ CALL PopulateAllShowSeats();
 DROP PROCEDURE PopulateAllShowSeats;
 
 -- Verify setup
-SELECT 'Database schema and seed data created successfully!' AS Result;
+SELECT 'Database schema and Tamil movie seed data created successfully!' AS Result;
 SELECT COUNT(*) AS total_shows FROM shows;
 SELECT COUNT(*) AS total_seats FROM seats;
