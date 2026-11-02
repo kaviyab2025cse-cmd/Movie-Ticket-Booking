@@ -115,26 +115,4 @@ java -cp "bin;lib/mysql-connector-j-8.4.0.jar" com.cinebook.test.DatabaseCRUDTes
 ```
 **Results:** 20 Test Cases Executed | 20 Passed | 0 Failed (100% Pass Rate).
 
----
 
-## 📤 How to Upload to GitHub
-To upload all project files to your repository (`https://github.com/kaviyab2025cse-cmd/Movie-Ticket-Booking`):
-
-### Method A: Upload Directly via GitHub Web (Easiest for Beginners)
-1. Open [https://github.com/kaviyab2025cse-cmd/Movie-Ticket-Booking](https://github.com/kaviyab2025cse-cmd/Movie-Ticket-Booking) in your web browser.
-2. Click **"Add file"** ➔ **"Upload files"**.
-3. Select all files and folders inside `CineBook_Final_Submission` and drag them into the browser.
-4. Type a commit message: `Initial commit - Complete CineBook OOPs and DBMS Project`.
-5. Click **"Commit changes"**.
-
-### Method B: Upload Using Git Command Line
-Open PowerShell or Command Prompt inside `CineBook_Final_Submission`:
-```bash
-git init
-git add .
-git commit -m "Complete CineBook OOPs and DBMS Project ready for submission"
-git branch -M main
-git remote add origin https://github.com/kaviyab2025cse-cmd/Movie-Ticket-Booking.git
-git push -u origin main
-```
-*(Enter your GitHub username and Personal Access Token when prompted)*.
