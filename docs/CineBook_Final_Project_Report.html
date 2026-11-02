@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CineBook - Final Project Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 25mm 20mm 25mm 20mm;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background: #fff;
+            margin: 0;
+            padding: 40px;
+        }
+        .cover-page {
+            text-align: center;
+            page-break-after: always;
+            padding-top: 60px;
+        }
+        .cover-title {
+            font-size: 26pt;
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .cover-subtitle {
+            font-size: 15pt;
+            color: #4a5568;
+            margin-bottom: 40px;
+        }
+        .cover-meta {
+            font-size: 12pt;
+            margin-top: 100px;
+            line-height: 1.8;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+        h1 {
+            color: #1a365d;
+            border-bottom: 2px solid #2b6cb0;
+            padding-bottom: 6px;
+            margin-top: 35px;
+            font-size: 18pt;
+        }
+        h2 {
+            color: #2b6cb0;
+            margin-top: 25px;
+            font-size: 14pt;
+        }
+        h3 {
+            color: #2d3748;
+            margin-top: 18px;
+            font-size: 12pt;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 10pt;
+        }
+        th, td {
+            border: 1px solid #cbd5e0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+        pre {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 12px;
+            overflow-x: auto;
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 9.5pt;
+        }
+        .figure {
+            text-align: center;
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+        .figure img {
+            max-width: 90%;
+            max-height: 500px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+        .caption {
+            font-style: italic;
+            font-size: 10pt;
+            color: #4a5568;
+            margin-top: 8px;
+        }
+        .badge-pass {
+            background-color: #c6f6d5;
+            color: #22543d;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cover-page">
+        <div style="font-size: 14pt; font-weight: bold; margin-bottom: 20px; text-transform: uppercase;">A College Project Report on</div>
+        <div class="cover-title">CineBook</div>
+        <div class="cover-subtitle">Movie Ticket Booking System (Core Java OOPs & MySQL DBMS)</div>
+        <div style="font-size: 11pt; color: #718096; margin-bottom: 60px;">Course: Object-Oriented Programming & Database Management Systems</div>
+
+        <div class="cover-meta">
+            <p><strong>Submitted by:</strong></p>
+            <p><strong>Kaviyarasu B</strong> | Register No: [_______________]</p>
+            <p>[Department of Computer Science and Engineering]</p>
+            <p>[College / Institution Name], Chennai, Tamil Nadu</p>
+            <p style="margin-top: 50px;"><strong>Submission Date:</strong> 05 November 2026</p>
+        </div>
+    </div>
+
+    <h1>Preliminary Pages</h1>
+    <h2>Bonafide Certificate</h2>
+    <p>Certified that this project report titled <strong>"CineBook - Movie Ticket Booking System"</strong> is the bonafide work of the student(s) who carried out the project under supervision in partial fulfillment of the requirements for the award of the Degree of Bachelor of Engineering in Computer Science and Engineering.</p>
+    <br><br>
+    <table style="border: none; margin-top: 40px;">
+        <tr style="border: none; background: none;">
+            <td style="border: none; width: 50%;"><strong>HEAD OF THE DEPARTMENT</strong><br>Department of CSE</td>
+            <td style="border: none; width: 50%; text-align: right;"><strong>SUPERVISOR / INTERNAL EXAMINER</strong><br>Department of CSE</td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>Student Declaration</h2>
+    <p>I / We hereby declare that the project entitled <strong>"CineBook - Movie Ticket Booking System"</strong> submitted to the Department of Computer Science and Engineering, is a record of original project work done by us under the guidance of our faculty supervisor.</p>
+    <p>This report represents our authentic work. All concepts of Object-Oriented Programming (OOP) in Java and Database Management Systems (DBMS) using MySQL have been implemented, executed, and verified by our team.</p>
+    <p><strong>Place:</strong> Chennai<br><strong>Date:</strong> 02/11/2026</p>
+
+    <h2>Acknowledgement</h2>
+    <p>We express our sincere gratitude and indebtedness to our respected Management, Principal, and Head of the Department for providing the required infrastructure to execute this project successfully.</p>
+    <p>We place on record our heartfelt thanks to our faculty supervisors for their insightful technical guidance and continuous support throughout the project development.</p>
+
+    <h2>Abstract</h2>
+    <p>The <strong>CineBook - Movie Ticket Booking System</strong> is an enterprise-grade console application engineered in Java (JDK 17+) and backed by a relational <strong>MySQL 8.0</strong> database via the Java Database Connectivity (JDBC) API. The project bridges theoretical Object-Oriented Programming (OOP) paradigms with practical Relational Database Management System (DBMS) principles.</p>
+    <p>Key OOP principles demonstrated include <strong>Encapsulation</strong>, <strong>Polymorphism</strong> (overloaded <code>calculateTotal()</code>), <strong>Inheritance & Interfaces</strong> (<code>Bookable</code> interface implementation), and <strong>Enums</strong> (<code>SeatType</code> binding categories to prices). Key DBMS principles include a normalized 3NF schema, <strong>ACID transactional boundaries</strong> (<code>setAutoCommit(false)</code>, <code>commit()</code>, and <code>rollback()</code>), and parameter-bound <code>PreparedStatement</code> queries guaranteeing SQL injection immunity.</p>
+
+    <div class="page-break"></div>
+
+    <h1>Chapter 1: Introduction</h1>
+    <p>Modern movie entertainment complexes require robust booking infrastructure capable of managing seating availability, multi-tier pricing, promotional campaigns, and transaction cancellations in real time. The <strong>CineBook</strong> system is developed to automate the box-office ticketing desk of a multiplex cinema. Built in core Java and interfaced with MySQL, it provides cinema administrators and ticketing operators with a responsive, menu-driven command-line interface.</p>
+
+    <h1>Chapter 2: Requirements and Feasibility</h1>
+    <p>CineBook satisfies all specified functional requirements (FR-1 through FR-8), including live $5 \times 8$ seat map rendering, multi-seat reservation, tiered pricing via enums (Regular: ₹150, Premium: ₹250, VIP: ₹400), coupon validation with 10% discount, and 80% refund processing on cancellation.</p>
+
+    <h1>Chapter 3: System Analysis and Design</h1>
+    <div class="figure">
+        <img src="diagrams/architecture_diagram.png" alt="Architecture Diagram">
+        <div class="caption">Figure 3.1: 3-Tier Layered Architecture of CineBook System</div>
+    </div>
+    <div class="figure">
+        <img src="diagrams/class_diagram.png" alt="Class Diagram">
+        <div class="caption">Figure 3.2: UML Class and Interface Diagram</div>
+    </div>
+    <div class="figure">
+        <img src="diagrams/use_case_diagram.png" alt="Use Case Diagram">
+        <div class="caption">Figure 3.3: Use Case Diagram for Customer and Administrator</div>
+    </div>
+    <div class="figure">
+        <img src="diagrams/booking_workflow.png" alt="Booking Workflow">
+        <div class="caption">Figure 3.4: Complete Booking and Cancellation Activity Workflow</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>Chapter 4: Database Design</h1>
+    <p>The system utilizes <strong>MySQL 8.0</strong> with the InnoDB storage engine for transactional integrity. Tables implemented:</p>
+    <ul>
+        <li><code>movies</code>: Master catalog of movie titles, runtimes, and genres.</li>
+        <li><code>shows</code>: Screenings with foreign keys to <code>movies</code>.</li>
+        <li><code>seats</code>: All 40 seats per show tracking live boolean availability flags.</li>
+        <li><code>coupons</code>: Promotional discount codes with percentage deduction rules.</li>
+        <li><code>bookings</code>: Complete audit ledger tracking booking IDs, amounts, and cancellation statuses.</li>
+        <li><code>booking_seats</code>: 1NF normalized bridge table linking bookings to reserved seats.</li>
+    </ul>
+
+    <h1>Chapter 5: Implementation</h1>
+    <p>The implementation combines Java SE 17+ and the official MySQL Connector/J JDBC driver. Full CRUD operations are implemented:</p>
+    <ul>
+        <li><strong>CREATE:</strong> Atomic insert into <code>bookings</code> and seat status updates guarded by transactions.</li>
+        <li><strong>READ:</strong> Queries fetching available shows, live seat grids, and booking records.</li>
+        <li><strong>UPDATE:</strong> Cancellation updates resetting booking status to <code>CANCELLED</code> and freeing reserved seats.</li>
+        <li><strong>DELETE:</strong> Administrative record cleanup while maintaining soft-delete status for audit compliance.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1>Chapter 6: Verification and Test Plan</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Test ID</th>
+                <th>Description</th>
+                <th>Expected Result</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>TC-01</td><td>Single Seat Booking</td><td>Booking confirmed, ID issued, seat marked booked</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-02</td><td>Multi-Seat Booking (C3, C4)</td><td>Total ₹500.00, both seats reserved</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-03</td><td>Occupied Seat Rejection</td><td>BookingException thrown, no seat reserved</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-04</td><td>Invalid Seat Coordinate (Z9)</td><td>Validation error prompt</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-05</td><td>Valid Coupon (CINE10)</td><td>10% discount applied accurately</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-06</td><td>Invalid Coupon Code</td><td>InvalidCouponException prompt</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-07</td><td>Cancellation & 80% Refund</td><td>80% refund issued, seats released</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-08</td><td>Malformed Booking ID</td><td>ID pattern check failure rejected</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-09</td><td>Double Cancellation Block</td><td>Second cancellation attempt rejected</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-10</td><td>Show Isolation</td><td>Seat booked in Show 1 is free in Show 2</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-11</td><td>Duplicate Seats in Request</td><td>Request rejected before reservation</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-12</td><td>SeatType Tier Pricing</td><td>Regular ₹150, Premium ₹250, VIP ₹400</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-13</td><td>Sequential Unique IDs</td><td>Sequential identifiers generated (BK1001, ...)</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-14</td><td>Empty Input Re-prompt</td><td>Prompt re-displayed without crash</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-15</td><td>Method Overloading</td><td>Both calculateTotal() variants accurate</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-16</td><td>DBMS Connection Check</td><td>MySQL connected or graceful fallback</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-17</td><td>DBMS READ Operations</td><td>Shows and 40 seats loaded from DB</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-18</td><td>DBMS CREATE Transaction</td><td>Atomic insert into bookings & seats</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-19</td><td>DBMS UPDATE Operation</td><td>Booking cancelled & seats freed via JDBC</td><td><span class="badge-pass">PASS</span></td></tr>
+            <tr><td>TC-20</td><td>DBMS Rollback Integrity</td><td>Rollback restores initial state on error</td><td><span class="badge-pass">PASS</span></td></tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h1>Chapter 7 & 8: Security, Limitations, and Conclusion</h1>
+    <p>Parameterized SQL queries eliminate SQL injection vulnerabilities. The application has been packaged and verified with 100% test success rate across 20 test cases, ready for final evaluation and viva demonstration.</p>
+
+    <h1>Appendix B: Output Screenshots</h1>
+    <div class="figure">
+        <img src="../screenshots/01_Main_Menu_And_Shows.png" alt="Main Menu & Shows">
+        <div class="caption">Figure B.1: Main Menu & Active Movie Schedules (READ)</div>
+    </div>
+    <div class="figure">
+        <img src="../screenshots/02_Seat_Map_And_Booking.png" alt="Seat Map & Booking">
+        <div class="caption">Figure B.2: Live 5x8 Seat Map & Multi-Seat Reservation (CREATE)</div>
+    </div>
+    <div class="figure">
+        <img src="../screenshots/03_Coupon_Discount.png" alt="Coupon Discount">
+        <div class="caption">Figure B.3: Coupon Discount Validation (CINE10)</div>
+    </div>
+    <div class="figure">
+        <img src="../screenshots/04_Cancellation_And_Refund.png" alt="Cancellation and Refund">
+        <div class="caption">Figure B.4: Booking Cancellation & 80% Refund Calculation (UPDATE)</div>
+    </div>
+    <div class="figure">
+        <img src="../screenshots/05_All_Bookings_History.png" alt="All Bookings History">
+        <div class="caption">Figure B.5: All Bookings History & Ledger Synchronization (READ)</div>
+    </div>
+    <div class="figure">
+        <img src="../screenshots/06_Input_Validation_Errors.png" alt="Validation Errors">
+        <div class="caption">Figure B.6: Fault-Tolerant Input Validation Handling</div>
+    </div>
+    <div class="figure">
+        <img src="../screenshots/07_Automated_Test_Results.png" alt="Automated Test Results">
+        <div class="caption">Figure B.7: Automated Test Suite Execution (All 20 Tests Passing)</div>
+    </div>
+
+</body>
+</html>
