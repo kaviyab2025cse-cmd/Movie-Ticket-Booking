@@ -1,0 +1,875 @@
+/* ==========================================================================
+   CineBook Movie Ticket Booking System - Dark Cinema Theme
+   ========================================================================== */
+
+:root {
+    --bg-primary: #0a0e17;
+    --bg-secondary: #111827;
+    --bg-card: #161f30;
+    --bg-card-hover: #1c273d;
+    --border-color: #243049;
+    
+    --accent-red: #e50914;
+    --accent-red-hover: #f40612;
+    --accent-blue: #3b82f6;
+    --accent-amber: #f59e0b;
+    --accent-emerald: #10b981;
+    
+    --seat-available: #1e293b;
+    --seat-available-border: #475569;
+    --seat-selected: #e50914;
+    --seat-booked: #334155;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.6);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.8);
+    --shadow-glow: 0 0 20px rgba(229, 9, 20, 0.4);
+    
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition-normal);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 23, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+.brand-icon {
+    background: linear-gradient(135deg, var(--accent-red), #ff4b2b);
+    color: white;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: var(--transition-fast);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.badge-tag {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+    position: relative;
+    padding: 70px 0 60px;
+    background: radial-gradient(circle at 50% 20%, #1a243a 0%, var(--bg-primary) 70%);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    color: #ff6b6b;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-red), #b90710);
+    color: white;
+    padding: 12px 28px;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.35);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-red-hover), var(--accent-red));
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid var(--border-color);
+}
+
+.stat-item h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Section Headers
+   ========================================================================== */
+.section-header {
+    margin: 50px 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   Movie Cards Grid
+   ========================================================================== */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.movie-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(229, 9, 20, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.movie-poster-box {
+    position: relative;
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.movie-poster-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 14, 23, 0.2) 0%, rgba(10, 14, 23, 0.9) 100%);
+}
+
+.badge-row {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating-badge {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    color: var(--accent-amber);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.genre-badge {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    color: var(--text-secondary);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.movie-info {
+    position: relative;
+    z-index: 2;
+    padding: 4px 0;
+}
+
+.movie-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.movie-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.movie-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-synopsis {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.showtimes-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.showtime-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.show-chip {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.show-chip:hover, .show-chip.active {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+    color: white;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
+}
+
+/* ==========================================================================
+   Interactive Seat Booking Modal & Screen
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 9, 15, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.booking-modal {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    padding: 30px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Cinema Curved Screen */
+.screen-wrapper {
+    margin: 20px auto 40px;
+    text-align: center;
+    perspective: 500px;
+}
+
+.screen-curve {
+    width: 75%;
+    height: 18px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #38bdf8 0%, rgba(56, 189, 248, 0) 100%);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.45);
+    transform: rotateX(-20deg);
+}
+
+.screen-text {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+/* 5x8 Seat Grid */
+.seat-map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.row-label {
+    width: 24px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.seats-group {
+    display: flex;
+    gap: 10px;
+}
+
+.seat {
+    width: 38px;
+    height: 36px;
+    background: var(--seat-available);
+    border: 1px solid var(--seat-available-border);
+    border-radius: 6px 6px 2px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    user-select: none;
+}
+
+.seat:hover:not(.booked) {
+    transform: scale(1.15);
+    border-color: var(--accent-red);
+    color: white;
+}
+
+.seat.selected {
+    background: var(--accent-red);
+    border-color: #ff4b2b;
+    color: white;
+    box-shadow: 0 0 12px rgba(229, 9, 20, 0.7);
+    transform: scale(1.1);
+}
+
+.seat.booked {
+    background: var(--seat-booked);
+    border-color: #1e293b;
+    color: #475569;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.seat-tier-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    width: 140px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* Legend */
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 14px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.legend-swatch {
+    width: 20px;
+    height: 18px;
+    border-radius: 4px;
+}
+
+.swatch-avail {
+    background: var(--seat-available);
+    border: 1px solid var(--seat-available-border);
+}
+
+.swatch-selected {
+    background: var(--accent-red);
+}
+
+.swatch-booked {
+    background: var(--seat-booked);
+}
+
+/* Booking Bar / Checkout Summary */
+.checkout-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.summary-info h4 {
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.summary-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.coupon-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.coupon-input {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: white;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 130px;
+}
+
+.coupon-btn {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.coupon-btn:hover {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.price-display {
+    text-align: right;
+}
+
+.price-total {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+}
+
+.discount-tag {
+    font-size: 0.8rem;
+    color: var(--accent-emerald);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Digital E-Ticket Card
+   ========================================================================== */
+.ticket-wrapper {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    max-width: 500px;
+    margin: 30px auto;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    position: relative;
+}
+
+.ticket-header {
+    background: linear-gradient(135deg, var(--accent-red), #b90710);
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-body {
+    padding: 25px;
+}
+
+.ticket-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+.ticket-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.ticket-value {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.ticket-perforation {
+    height: 2px;
+    border-bottom: 2px dashed #334155;
+    margin: 20px 0;
+    position: relative;
+}
+
+.ticket-perforation::before, .ticket-perforation::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    top: -10px;
+}
+
+.ticket-perforation::before { left: -35px; }
+.ticket-perforation::after { right: -35px; }
+
+.ticket-barcode {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 5px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 15px;
+}
+
+/* ==========================================================================
+   My Bookings Management Table (CRUD Demonstration)
+   ========================================================================== */
+.bookings-section {
+    margin: 60px 0;
+}
+
+.table-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.custom-table th, .custom-table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-table th {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.badge-status-confirmed {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-status-cancelled {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.btn-cancel-sm {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.btn-cancel-sm:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* ==========================================================================
+   Architecture & OOPs Modal Info Drawer
+   ========================================================================== */
+.arch-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.arch-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    border-radius: var(--radius-sm);
+}
+
+.arch-card h5 {
+    color: var(--accent-blue);
+    margin-bottom: 6px;
+    font-size: 1rem;
+}
+
+.arch-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    border-top: 1px solid var(--border-color);
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 60px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.2rem; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .seats-group { gap: 6px; }
+    .seat { width: 30px; height: 30px; font-size: 0.65rem; }
+    .checkout-panel { flex-direction: column; align-items: stretch; }
+    .price-display { text-align: left; }
+}

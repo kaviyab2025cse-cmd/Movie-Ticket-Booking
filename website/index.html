@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineBook - Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎟️</text></svg>">
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="brand">
+                <div class="brand-icon">🎬</div>
+                <span>CineBook</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#movies" class="active">Now Showing</a></li>
+                <li><a href="#bookings">My Bookings</a></li>
+                <li><button class="btn-secondary" onclick="toggleArchModal()" style="padding: 6px 14px; font-size: 0.85rem;">Project Architecture</button></li>
+                <li><span class="badge-tag">OOPs & DBMS Project</span></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-pill">
+                    <span>✨ College Demo Mode</span> • Live Cinema Counter
+                </div>
+                <h1 class="hero-title">Experience Cinema Like Never Before</h1>
+                <p class="hero-desc">
+                    Book your favorite seats across 3 tiers (Regular, Premium, VIP) in our modern multiplex. Powered by Core Java OOP principles and MySQL Relational DBMS.
+                </p>
+                <div class="hero-actions">
+                    <a href="#movies" class="btn-primary">
+                        <span>🎟️ Book Tickets Now</span>
+                    </a>
+                    <button class="btn-secondary" onclick="toggleArchModal()">
+                        <span>📘 View Java & DBMS Design</span>
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h4>4 Daily Shows</h4>
+                        <p>Independent seat grids</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>40 Seats / Show</h4>
+                        <p>5 Rows × 8 Columns</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>80% Refund</h4>
+                        <p>Instant cancellation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Movie Cards Section -->
+    <main class="container" id="movies">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">🍿 Now Showing in Theatres</h2>
+                <p class="section-subtitle">Select a movie and preferred showtime to choose your seats</p>
+            </div>
+            <span class="badge-tag" style="background: rgba(16,185,129,0.1); color: var(--accent-emerald); border-color: rgba(16,185,129,0.3);">● Box Office Open</span>
+        </div>
+
+        <div class="movies-grid" id="moviesGrid">
+            <!-- Dynamically populated by app.js -->
+        </div>
+
+        <!-- My Bookings Table Section (CRUD READ & UPDATE) -->
+        <section class="bookings-section" id="bookings">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">📋 My Bookings & Audit Ledger</h2>
+                    <p class="section-subtitle">Real-time booking records synchronized in browser local storage (Simulating MySQL Table)</p>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Movie Title</th>
+                            <th>Show Time</th>
+                            <th>Seat Numbers</th>
+                            <th>Amount Paid</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                        <!-- Populated by app.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive 5x8 Seat Booking Modal -->
+    <div class="modal-overlay" id="bookingModalOverlay">
+        <div class="booking-modal">
+            <button class="modal-close-btn" onclick="closeSeatModal()">&times;</button>
+            
+            <div style="margin-bottom: 20px;">
+                <h2 id="modalMovieTitle" style="color: white; font-size: 1.6rem; margin-bottom: 4px;">Movie Title</h2>
+                <p id="modalMovieMeta" style="color: var(--text-secondary); font-size: 0.9rem;">Genre • Duration</p>
+            </div>
+
+            <!-- Curved Cinema Screen -->
+            <div class="screen-wrapper">
+                <div class="screen-curve"></div>
+                <div class="screen-text">[ S C R E E N ]</div>
+            </div>
+
+            <!-- 5x8 Grid Map -->
+            <div class="seat-map-container" id="seatGridContainer">
+                <!-- Dynamically generated rows A-E and columns 1-8 -->
+            </div>
+
+            <!-- Seat Legend -->
+            <div class="seat-legend">
+                <div class="legend-item">
+                    <div class="legend-swatch swatch-avail"></div>
+                    <span>Available (O)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-swatch swatch-selected"></div>
+                    <span>Selected</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-swatch swatch-booked"></div>
+                    <span>Booked (X)</span>
+                </div>
+            </div>
+
+            <!-- Checkout Panel -->
+            <div class="checkout-panel">
+                <div class="summary-info">
+                    <h4>Selected Seats: <span id="selectedSeatsList" style="color: var(--accent-red);">None</span></h4>
+                    <p>Rows A-B: Regular (₹150) | C-D: Premium (₹250) | E: VIP (₹400)</p>
+                    
+                    <div class="coupon-group">
+                        <input type="text" id="couponInput" class="coupon-input" placeholder="Coupon Code" maxlength="10">
+                        <button class="coupon-btn" onclick="applyCouponCode()">Apply CINE10</button>
+                    </div>
+                    <div id="couponFeedback" style="font-size: 0.8rem; margin-top: 4px; font-weight: 600;"></div>
+                </div>
+
+                <div class="price-display">
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">Total Payable Amount</div>
+                    <div class="price-total" id="totalPriceDisplay">₹0.00</div>
+                    <div id="discountDisplay" class="discount-tag" style="display: none;"></div>
+                    <div style="margin-top: 12px;">
+                        <button id="confirmBookingBtn" class="btn-primary" onclick="processBooking()" disabled>
+                            Confirm Booking
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Digital E-Ticket Modal -->
+    <div class="modal-overlay" id="ticketModalOverlay">
+        <div class="booking-modal" style="max-width: 550px;">
+            <button class="modal-close-btn" onclick="closeTicketModal()">&times;</button>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 style="color: var(--accent-emerald);">🎉 Booking Confirmed!</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Your e-ticket is ready. Show this at the cinema entrance.</p>
+            </div>
+
+            <div class="ticket-wrapper">
+                <div class="ticket-header">
+                    <div>
+                        <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">CineBook Cinema</div>
+                        <h3 id="ticketMovie" style="font-size: 1.3rem; margin-top: 2px;">Movie Title</h3>
+                    </div>
+                    <div class="brand-icon">🎬</div>
+                </div>
+                <div class="ticket-body">
+                    <div class="ticket-row">
+                        <span class="ticket-label">Booking ID</span>
+                        <span class="ticket-value" id="ticketId" style="color: var(--accent-red);">BK1001</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Show Time</span>
+                        <span class="ticket-value" id="ticketTime">7:30 PM</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Reserved Seats</span>
+                        <span class="ticket-value" id="ticketSeats">C3, C4</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Amount Paid</span>
+                        <span class="ticket-value" id="ticketAmount">₹450.00</span>
+                    </div>
+                    <div class="ticket-row">
+                        <span class="ticket-label">Ticket Status</span>
+                        <span class="ticket-value" id="ticketStatus" style="color: var(--accent-emerald);">CONFIRMED</span>
+                    </div>
+
+                    <div class="ticket-perforation"></div>
+                    <div class="ticket-barcode" id="ticketBarcode">||| | ||||| | || | BK1001 ||</div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; gap: 14px; margin-top: 20px;">
+                <button class="btn-primary" onclick="window.print()">🖨️ Print Ticket</button>
+                <button class="btn-secondary" onclick="closeTicketModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Architecture & OOPs Modal Drawer -->
+    <div class="modal-overlay" id="archModalOverlay">
+        <div class="booking-modal" style="max-width: 800px;">
+            <button class="modal-close-btn" onclick="toggleArchModal()">&times;</button>
+            <h2 style="color: white; font-size: 1.6rem; margin-bottom: 10px;">🏛️ Project Architecture & OOPs Design</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                How this web frontend maps directly to the Core Java backend and MySQL database models.
+            </p>
+
+            <div class="arch-card-grid">
+                <div class="arch-card">
+                    <h5>Encapsulation</h5>
+                    <p><code>Show.java</code>, <code>Seat.java</code>, and <code>Booking.java</code> hide private fields with defensive copies and unmodifiable lists.</p>
+                </div>
+                <div class="arch-card">
+                    <h5>Polymorphism</h5>
+                    <p>Overloaded <code>calculateTotal()</code> handles base prices or coupon discounts dynamically.</p>
+                </div>
+                <div class="arch-card">
+                    <h5>Inheritance & Interfaces</h5>
+                    <p><code>Bookable.java</code> enforces strict lifecycle contracts (<code>bookSeats()</code>, <code>cancelBooking()</code>).</p>
+                </div>
+                <div class="arch-card">
+                    <h5>Enums with State</h5>
+                    <p><code>SeatType.java</code> defines REGULAR (₹150), PREMIUM (₹250), VIP (₹400) with price fields.</p>
+                </div>
+                <div class="arch-card">
+                    <h5>MySQL 3NF DBMS</h5>
+                    <p>Normalized tables (<code>movies</code>, <code>shows</code>, <code>seats</code>, <code>coupons</code>, <code>bookings</code>) with foreign keys and check constraints.</p>
+                </div>
+                <div class="arch-card">
+                    <h5>ACID Transactions</h5>
+                    <p>Atomic multi-seat booking with <code>setAutoCommit(false)</code> and automatic rollback on conflicts.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn-secondary" onclick="toggleArchModal()">Back to Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 8px;"><strong>CineBook - Movie Ticket Booking System</strong></p>
+            <p>Course: Object-Oriented Programming (Java) & Database Management Systems (MySQL)</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">
+                College Project Review & Demonstration • Academic Year 2026-2027
+            </p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
